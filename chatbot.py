@@ -2,36 +2,35 @@
 import openai
 import time
 
-# Set your OpenAI API key here
-openai.api_key = "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"
+
+openai.api_key = "****"
 
 def chat_with_bot(prompt):
     try:
         response = openai.Completion.create(
-            engine="davinci",  # You can choose different engines like "davinci", "curie", etc.
+            engine="davinci",  
             prompt=prompt,
-            max_tokens=50  # You can adjust this value to control the response length
+            max_tokens=50  
         )
         return response.choices[0].text.strip()
     except openai.error.OpenAIError as e:
         return f"An error occurred: {str(e)}"
 
 def main():
-    print("Chatbot: Hello! I'm your AI chatbot. How can I assist you today?")
+    print("Chatbot: Bonjour ! Je suis votre chatbot IA. Comment puis-je vous aider aujourd'hui ?")
     
     while True:
-        user_input = input("You: ")
+        user_input = input("Vous : ")
         
         if user_input.lower() == 'exit':
-            print("Chatbot: Goodbye!")
+            print("Chatbot: Au revoir !")
             break
         
-        prompt = f"You: {user_input}\nChatbot:"
+        prompt = f"Vous : {user_input}\nChatbot:"
         bot_response = chat_with_bot(prompt)
         
-        print("Chatbot:", bot_response)
+        print("Chatbot :", bot_response)
         
-        # Introduce a delay of 1 second between responses
         time.sleep(1)
 
 if __name__ == "__main__":
